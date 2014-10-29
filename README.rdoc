@@ -1,0 +1,33 @@
+== Getting Started
+
+1. Clone the repo
+
+2. run 'bundle install'
+
+3. run 'bundle exec rake db:create'
+
+4. run 'bundle exec rake db:migrate db:seed'
+
+5. run a rails server (bundle exec rails server)
+
+6. Go to 'localhost:3000' and enjoy!
+
+== TO DO List (Optimizations and Improvements)
+
+1. Resize assets
+
+2. Use caching
+
+3. Add sessions
+
+4. Add a PvP ("with Friends") mode
+
+5. Leaderboards!
+
+6. Clean up SCSS
+
+== THANK YOU!
+
+All my assets were stolen from deviantArt:
+http://chromadancer.deviantart.com/
+http://mlp-vector-collabs.deviantart.com/

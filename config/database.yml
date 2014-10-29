@@ -1,0 +1,9 @@
+login: &login
+  adapter: mysql2
+  database: blackjack_development
+  username: root
+  password:
+  host: localhost
+
+development:
+  <<: *login

@@ -11,7 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141029232556) do
+ActiveRecord::Schema.define(version: 20141030004959) do
+
+  create_table "blackjacks", force: true do |t|
+    t.integer  "user_id"
+    t.text     "user_hand"
+    t.text     "dealer_hand"
+    t.text     "deck"
+    t.integer  "game_state"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "blackjacks", ["user_id"], name: "index_blackjacks_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "name",          null: false

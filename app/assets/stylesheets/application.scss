@@ -119,3 +119,52 @@ h1, h2, h3 {
   background-repeat: no-repeat;
   background-size: 100% auto;
 }
+
+.game_content {
+  margin: auto;
+  max-width: 80%;
+  min-width: 30%;
+  width: auto;
+  height: 400px;
+  background: rgba(255,255,255,0.7);
+  border-radius: 10px;
+  min-height: 400px;
+  padding: 20px;
+}
+
+.user_side, .dealer_side {
+  width: 49%;
+  background: red;
+  height: 100%;
+  float:left;
+}
+
+.cards {
+  margin: auto;
+  width: 100%;
+}
+
+.playing_card {
+  background-image: image-url("cards.png");
+  background-size: 1000px 600px;
+  background-repeat: no-repeat;
+  width: 72px;
+  height: 100px;
+  display: inline-block;
+  margin: 0 4px;
+}
+
+@for $i from 0 through 12 {
+  .diamonds-#{$i + 1} {
+    background-position: ($i * 7.7%) 80%;
+  }
+  .apples-#{$i + 1} {
+    background-position: ($i * 7.7%) 0%;
+  }
+  .butterflies-#{$i + 1} {
+    background-position: ($i * 7.7%) 60%;
+  }
+  .stars-#{$i + 1} {
+    background-position: ($i * 7.7%) 100%;
+  }
+}

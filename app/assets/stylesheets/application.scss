@@ -43,6 +43,8 @@ h1, h2, h3 {
   font-family: 'equestriabold', sans-serif;
 }
 
+/********************************* LOGIN STYLES *********************************/
+
 .title {
   h1, h2 {
     color: white;
@@ -104,4 +106,16 @@ h1, h2, h3 {
   text-align: center;
   font-weight: bold;
   color: #D26337;
+}
+
+/********************************* GAME STYLES *********************************/
+
+.game_board {
+  width: 100%;
+  height: 100%;
+  min-height: 600px;
+  background-image: image-url("game_bg.png");
+  background-position: 0 0;
+  background-repeat: no-repeat;
+  background-size: 100% auto;
 }

@@ -1,0 +1,40 @@
+<div class="game_board">
+  <div class="title">
+    <h1>My Little Blackjack</h1>
+  </div>
+
+  <div class="game_content">
+    <div class="user_side">
+      <h2><%= current_user.name %></h2>
+      <div class="cards">
+        <% @blackjack.get_user_hand.each do |card| %>
+          <div class="playing_card <%= BlackjackHelper.get_card_classes(card) %>"></div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="dealer_side">
+      <h2>Dealer</h2>
+      <div class="cards">
+        <% @blackjack.get_dealer_hand.each do |card| %>
+          <div class="playing_card <%= BlackjackHelper.get_card_classes(card) %>"></div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="actions">
+      <%= form_tag hit_blackjack_url(@blackjack.id) do %>
+        <p class="button"><%= submit_tag "HIT" %></p>
+      <% end %>
+
+      <%= form_tag stand_blackjack_url(@blackjack.id) do %>
+        <p class="button"><%= submit_tag "STAND" %></p>
+      <% end %>
+
+      <%= form_tag help_blackjack_url(@blackjack.id) do %>
+        <p class="button"><%= submit_tag "HELP" %></p>
+      <% end %>
+    </div>
+
+  </div>
+</div>

@@ -1,25 +1,22 @@
-<div class="game_board">
+<div class="welcome">
   <div class="title">
     <h1>My Little Blackjack</h1>
   </div>
 
   <div class="game_content">
-    <div class="user_side">
-      <h2><%= current_user.name %></h2>
-      <div class="cards">
-        <% @blackjack.get_user_hand.each do |card| %>
-          <div class="playing_card <%= BlackjackHelper.get_card_classes(card) %>"></div>
-        <% end %>
-      </div>
-    </div>
-
-    <div class="dealer_side">
-      <h2>Dealer</h2>
-      <div class="cards">
-        <% @blackjack.get_dealer_hand.each do |card| %>
-          <div class="playing_card <%= BlackjackHelper.get_card_classes(card) %>"></div>
-        <% end %>
-      </div>
-    </div>
+    <table>
+      <tr>
+        <th>ID</th>
+        <th>Game State</th>
+        <th>Date Started</th>
+      </tr>
+      <% @blackjacks.each do |blackjack| %>
+        <tr>
+          <td><%= blackjack.id %></td>
+          <td><%= blackjack.game_state %></td>
+          <td><%= blackjack.created_at %></td>
+        </tr>
+      <% end %>
+    </table>
   </div>
 </div>

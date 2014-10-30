@@ -56,9 +56,11 @@ MyLittleBlackjack::Application.routes.draw do
 
   resources :blackjacks do
     member do
-      post 'deal'
+      get 'show'
+      post 'show'
       post 'hit'
       post 'stand'
+      post 'help'
     end
   end
 

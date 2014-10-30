@@ -19,22 +19,33 @@ class Blackjack < ActiveRecord::Base
   end
 
   def deal(num_cards = 1)
+    deck = load_array(self.deck)
     cards = []
-    (1..num_cards).each{ cards << self.deck.pop }
-    self.save
+    (1..num_cards).each{ cards << deck.pop }
+    self.deck = deck
+    self.save!
 
     cards
   end
 
+  def hit
+    return if self.game_state != STATE_ACTIVE
+    old_user_hand = load_array(self.user_hand)
+    new_user_hand = old_user_hand.push *deal
+    self.update_attributes(user_hand: new_user_hand)
+  end
+
   def get_user_hand
-    load_hand(self.user_hand)
+    load_array(self.user_hand)
   end
 
   def get_dealer_hand
-    load_hand(self.dealer_hand)
+    load_array(self.dealer_hand)
   end
 
-  def load_hand(hand)
+  private
+
+  def load_array(hand)
     if hand.is_a? String
       YAML.load(hand)
     else

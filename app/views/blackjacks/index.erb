@@ -7,14 +7,24 @@
     <table>
       <tr>
         <th>ID</th>
-        <th>Game State</th>
-        <th>Date Started</th>
+        <th>Date</th>
+        <th>Results</th>
+        <th>Actions</th>
       </tr>
       <% @blackjacks.each do |blackjack| %>
         <tr>
           <td><%= blackjack.id %></td>
-          <td><%= blackjack.game_state %></td>
-          <td><%= blackjack.created_at %></td>
+          <td><%= blackjack.created_at.strftime("%A, %B %d, %Y") %></td>
+          <td><%= BlackjackHelper.display_state(blackjack.game_state) %></td>
+          <td>
+            <% if blackjack.game_state == Blackjack::STATE_ACTIVE %>
+              <%= form_tag blackjack_url(blackjack.id) do %>
+                <p class="button"><%= submit_tag "KEEP PLAYING!" %></p>
+              <% end %>
+            <% else %>
+              None Available
+            <% end %>
+          </td>
         </tr>
       <% end %>
     </table>

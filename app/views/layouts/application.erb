@@ -16,10 +16,6 @@
         <%= link_to "Sign up", sign_up_path %>
       <% end %>
     </div>
-
-    <% if flash[:error] %>
-      <p class="error"><%= flash[:error] %></p>
-    <% end %>
     <div id="content">
       <%= yield %>
     </div>

@@ -35,12 +35,53 @@ class Blackjack < ActiveRecord::Base
     self.update_attributes(user_hand: new_user_hand)
   end
 
+  def stand
+    return if self.game_state != STATE_ACTIVE
+    old_dealer_hand = load_array(self.dealer_hand)
+    while BlackjackHelper.hand_value(old_dealer_hand) < 17 do
+      new_dealer_hand = old_dealer_hand.push *deal
+    end
+    # TODO: ensure this saves correctly!!!
+    self.update_attributes(dealer_hand: new_dealer_hand)
+  end
+
   def get_user_hand
     load_array(self.user_hand)
   end
 
   def get_dealer_hand
     load_array(self.dealer_hand)
+  end
+
+  def evaluate_game(end_game = false)
+    user_hand = load_array(self.user_hand)
+    dealer_hand = load_array(self.dealer_hand)
+    user_hand_value = BlackjackHelper.hand_value(user_hand)
+    dealer_hand_value = BlackjackHelper.hand_value(dealer_hand)
+    results = {}
+
+    if user_hand_value == 21 && user_hand.length == 2
+      results = {state: STATE_PLAYER_WIN, notice: "You got blackjack!"}
+    elsif user_hand_value > 21
+      results = {state: STATE_DEALER_WIN, notice: "You busted. Dealer wins!"}
+    elsif dealer_hand_value == 21 && dealer_hand.length == 2
+      results = {state: STATE_DEALER_WIN, notice: "Dealer got blackjack!"}
+    elsif dealer_hand_value > 21
+      results = {state: STATE_PLAYER_WIN, notice: "Dealer busted. You win!"}
+    elsif end_game
+      if user_hand_value > dealer_hand_value
+        results = {state: STATE_PLAYER_WIN, notice: "You beat the dealer. You win!"}
+      elsif user_hand_value == dealer_hand_value
+        results = {state: STATE_DEALER_WIN, notice: "The dealer tied you. You lose!"}
+      else
+        results = {state: STATE_DEALER_WIN, notice: "The dealer beat you. You lose!"}
+      end
+    else
+      results = {state: STATE_ACTIVE}
+    end
+
+    self.update_attributes(game_state: results[:state])
+    return results
   end
 
   private

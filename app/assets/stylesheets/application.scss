@@ -41,6 +41,7 @@ h1, h2, h3 {
   text-align: center;
   padding: 10px;
   font-family: 'equestriabold', sans-serif;
+  margin: 0;
 }
 
 /********************************* LOGIN STYLES *********************************/
@@ -48,7 +49,6 @@ h1, h2, h3 {
 .title {
   h1, h2 {
     color: white;
-    margin: 0;
     text-shadow: 0px 1px 3px rgba(255, 0, 0, 0.6);
   }
 
@@ -132,6 +132,11 @@ h1, h2, h3 {
   padding: 20px;
 }
 
+.scrollable_content {
+  height: 400px;
+  overflow: scroll;
+}
+
 .user_side, .dealer_side {
   width: 49%;
   height: 85%;
@@ -174,3 +179,9 @@ h1, h2, h3 {
     background-position: ($i * 7.7%) 100%;
   }
 }
+
+.games_list {
+  width: 100%;
+  text-align: center;
+}
+

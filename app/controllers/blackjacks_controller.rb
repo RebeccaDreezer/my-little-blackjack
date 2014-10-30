@@ -1,12 +1,11 @@
 class BlackjacksController < ApplicationController
 
   def index
-    @blackjacks = current_user.blackjacks
+    @blackjacks = current_user.blackjacks.order("id DESC")
 
-    if params[:id].present?
-      @blackjack = Blackjack.find_by(id: params[:id])
-    elsif @blackjack.present?
-      @blackjack = current_user.blackjacks.find_by(game_state: Blackjack::STATE_ACTIVE)
+    current_blackjack = @blackjacks.find_by(game_state: Blackjack::STATE_ACTIVE)
+    unless current_blackjack.present?
+      #TODO: add a something here to ensure a "new" button gets made
     end
   end
 
@@ -19,6 +18,9 @@ class BlackjacksController < ApplicationController
     end
     @blackjack.new_deal
 
+    result = @blackjack.evaluate_game
+    flash[:notice] = result[:notice] unless result[:state] == Blackjack::STATE_ACTIVE
+
     redirect_to blackjack_url(id: @blackjack.id)
   end
 
@@ -30,11 +32,20 @@ class BlackjacksController < ApplicationController
     @blackjack = Blackjack.find_by(id: params[:id])
     @blackjack.hit
 
+    result = @blackjack.evaluate_game
+    flash[:notice] = result[:notice] unless result[:state] == Blackjack::STATE_ACTIVE
+
     redirect_to blackjack_url(id: params[:id])
   end
 
   def stand
+    @blackjack = Blackjack.find_by(id: params[:id])
+    @blackjack.stand
 
+    result = @blackjack.evaluate_game
+    flash[:notice] = result[:notice] unless result[:state] == Blackjack::STATE_ACTIVE
+
+    redirect_to blackjack_url(id: params[:id])
   end
 
   def help

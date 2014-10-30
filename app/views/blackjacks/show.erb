@@ -1,6 +1,9 @@
 <div class="game_board">
   <div class="title">
     <h1>My Little Blackjack</h1>
+    <% if flash[:notice] %>
+      <p class="flash"><%= flash[:notice] %></p>
+    <% end %>
   </div>
 
   <div class="game_content">
@@ -22,19 +25,21 @@
       </div>
     </div>
 
-    <div class="actions">
-      <%= form_tag hit_blackjack_url(@blackjack.id) do %>
-        <p class="button"><%= submit_tag "HIT" %></p>
-      <% end %>
+    <% if @blackjack.game_state == Blackjack::STATE_ACTIVE %>
+      <div class="actions">
+        <%= form_tag hit_blackjack_url(@blackjack.id) do %>
+          <p class="button"><%= submit_tag "HIT" %></p>
+        <% end %>
 
-      <%= form_tag stand_blackjack_url(@blackjack.id) do %>
-        <p class="button"><%= submit_tag "STAND" %></p>
-      <% end %>
+        <%= form_tag stand_blackjack_url(@blackjack.id) do %>
+          <p class="button"><%= submit_tag "STAND" %></p>
+        <% end %>
 
-      <%= form_tag help_blackjack_url(@blackjack.id) do %>
-        <p class="button"><%= submit_tag "HELP" %></p>
-      <% end %>
-    </div>
+        <%= form_tag help_blackjack_url(@blackjack.id) do %>
+          <p class="button"><%= submit_tag "HELP" %></p>
+        <% end %>
+      </div>
+    <% end %>
 
   </div>
 </div>

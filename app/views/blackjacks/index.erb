@@ -4,8 +4,17 @@
   </div>
 
   <div class="game_content">
+    <h2>Games</h2>
+    <div class="actions">
+      <%= form_tag stats_user_url(current_user.id) do %>
+        <p class="button"><%= submit_tag "#{current_user.name.upcase} STATS" %></p>
+      <% end %>
+
+      <%= form_tag blackjack_new_url(current_user.id) do %>
+        <p class="button"><%= submit_tag "NEW GAME" %></p>
+      <% end %>
+    </div>
     <div class="scrollable_content">
-      <h2>Games</h2>
       <table class="games_list">
         <tr>
           <th>ID</th>

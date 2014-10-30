@@ -19,14 +19,18 @@
     <div class="dealer_side">
       <h2>Dealer</h2>
       <div class="cards">
-        <% @blackjack.get_dealer_hand.each do |card| %>
-          <div class="playing_card <%= BlackjackHelper.get_card_classes(card) %>"></div>
+        <% @blackjack.get_dealer_hand.each_with_index do |card, index| %>
+          <% if index > 0 %>
+            <div class="playing_card <%= BlackjackHelper.get_card_classes(card) %>"></div>
+          <% else %>
+            <div class="playing_card card_back"></div>
+          <% end %>
         <% end %>
       </div>
     </div>
 
     <% if @blackjack.game_state == Blackjack::STATE_ACTIVE %>
-      <div class="actions">
+      <div class="actions card_actions">
         <%= form_tag hit_blackjack_url(@blackjack.id) do %>
           <p class="button"><%= submit_tag "HIT" %></p>
         <% end %>

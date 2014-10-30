@@ -1,6 +1,11 @@
 class UsersController < ApplicationController
   def new
-    @user = User.new
+    if current_user.present?
+      redirect_to blackjacks_url
+      return
+    else
+      @user = User.new
+    end
   end
 
   def create

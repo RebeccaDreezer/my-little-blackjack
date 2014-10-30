@@ -1,0 +1,40 @@
+<div class="welcome">
+  <div class="title">
+    <h1>My Little Blackjack</h1>
+  </div>
+
+  <div class="login">
+    <h1>Sign Up</h1>
+
+    <% flash.each do |name, msg| %>
+      <%= content_tag :div, msg, :id => "flash_#{name}", :class => "flash" %>
+    <% end %>
+
+    <%= form_for @user do |f| %>
+      <% if @user.errors.any? %>
+        <div class="error_messages flash">
+          <% for message in @user.errors.full_messages %>
+            <div><%= message %></div>
+          <% end %>
+        </div>
+      <% end %>
+      <p>
+        <%= f.label :name %>
+        <%= f.text_field :name %>
+      </p>
+      <p>
+        <%= f.label :email %>
+        <%= f.text_field :email %>
+      </p>
+      <p>
+        <%= f.label :password %>
+        <%= f.password_field :password %>
+      </p>
+      <p>
+        <%= f.label :password_confirmation %>
+        <%= f.password_field :password_confirmation %>
+      </p>
+      <p class="button"><%= f.submit %></p>
+    <% end %>
+  </div>
+</div>

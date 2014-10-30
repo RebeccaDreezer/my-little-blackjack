@@ -12,6 +12,8 @@ group :assets do
   gem 'uglifier'
 end
 
+gem "bcrypt", :require => "bcrypt"
+
 gem 'jquery-rails'
 
 gem 'unicorn'

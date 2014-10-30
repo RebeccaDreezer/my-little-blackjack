@@ -28,6 +28,9 @@
 
 == THANK YOU!
 
-All my assets were stolen from deviantArt:
-http://chromadancer.deviantart.com/
+1. All my assets were stolen from deviantArt: <br/>
+http://chromadancer.deviantart.com/ <br/>
 http://mlp-vector-collabs.deviantart.com/
+
+2. My authentication is borrowed from this Railscast: <br/>
+http://railscasts.com/episodes/250-authentication-from-scratch

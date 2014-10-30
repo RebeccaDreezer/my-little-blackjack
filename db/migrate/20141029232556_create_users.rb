@@ -2,8 +2,9 @@ class CreateUsers < ActiveRecord::Migration
   def change
     create_table :users do |t|
       t.string :name, null: false
-      t.integer :wins, default: 0, null: false
-      t.integer :losses, default: 0, null: false
+      t.string :email
+      t.string :password_hash
+      t.string :password_salt
       t.timestamps
     end
   end

@@ -1,4 +1,6 @@
 MyLittleBlackjack::Application.routes.draw do
+  get "sessions/new"
+  get "users/new"
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -42,7 +44,14 @@ MyLittleBlackjack::Application.routes.draw do
   #     resources :products
   #   end
 
-  root :to => 'welcome#index'
+  # root :to => 'welcome#index'
+
+  get "log_out" => "sessions#destroy", :as => "log_out"
+  get "log_in" => "sessions#new", :as => "log_in"
+  get "sign_up" => "users#new", :as => "sign_up"
+  root :to => "users#new"
+  resources :users
+  resources :sessions
 
   # Sample of named route:
   post 'user/create' => 'welcome#create_user', :as => :create_user

@@ -30,6 +30,8 @@
 
 4. Leaderboards! With a PvP mode, leaderboards are super important.
 
+5. Add complete backend test coverage (specifically, blackjack model)
+
 == THANK YOU!
 
 1. All my assets were stolen from deviantArt:

@@ -5,7 +5,7 @@
 
   <div class="game_content">
     <% if @blackjack.game_state != Blackjack::STATE_ACTIVE %>
-      <h1 class="game_result"><%= BlackjackHelper.display_results(@blackjack) %></h1>
+      <h1 class="game_result"><%= BlackjackHelper.display_results(@blackjack) %> <%= link_to("Play again!", blackjacks_url, :method => :post) %></h1>
     <% end %>
 
     <% if flash[:notice] %>

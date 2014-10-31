@@ -11,6 +11,7 @@ class Blackjack < ActiveRecord::Base
     'h01', 'h02', 'h03', 'h04', 'h05', 'h06', 'h07', 'h08', 'h09', 'h10', 'h11', 'h12', 'h13',
     's01', 's02', 's03', 's04', 's05', 's06', 's07', 's08', 's09', 's10', 's11', 's12', 's13'
   ]
+  DEALER_HIT_MAX = 16
 
   scope :active, -> { where(game_state: STATE_ACTIVE) }
 
@@ -43,7 +44,7 @@ class Blackjack < ActiveRecord::Base
     return if self.game_state != STATE_ACTIVE
     old_dealer_hand = load_array(self.dealer_hand)
     new_dealer_hand = []
-    while BlackjackHelper.hand_value(old_dealer_hand) < 17 do
+    while BlackjackHelper.hand_value(old_dealer_hand) < DEALER_HIT_MAX do
       new_dealer_hand = old_dealer_hand.push *deal
     end
     self.update_attributes(dealer_hand: new_dealer_hand) unless new_dealer_hand.empty?

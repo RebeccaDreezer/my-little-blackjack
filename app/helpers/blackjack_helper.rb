@@ -36,11 +36,6 @@ module BlackjackHelper
 
   def self.card_value(card)
     value = card.slice(1, 2).to_i
-    [value, 10].min
-  end
-
-  def self.card_value(card)
-    value = card.slice(1, 2).to_i
     value == 1 ? value = 11 : [value, 10].min
   end
 

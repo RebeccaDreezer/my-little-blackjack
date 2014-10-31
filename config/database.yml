@@ -7,3 +7,7 @@ login: &login
 
 development:
   <<: *login
+
+test:
+  <<: *login
+  database: blackjack_test

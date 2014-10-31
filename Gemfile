@@ -18,3 +18,7 @@ gem 'jquery-rails'
 
 gem 'unicorn'
 gem 'debugger'
+
+group :test do
+  gem 'rspec-rails', '~> 3.0.0'
+end

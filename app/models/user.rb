@@ -25,4 +25,12 @@ class User < ActiveRecord::Base
       self.password_hash = BCrypt::Engine.hash_secret(password, password_salt)
     end
   end
+
+  def increment_user_score(game_state)
+    if game_state == Blackjack::STATE_USER_WIN
+      self.user_stat.increment!(:wins)
+    elsif game_state == Blackjack::STATE_DEALER_WIN
+      self.user_stat.increment!(:losses)
+    end
+  end
 end

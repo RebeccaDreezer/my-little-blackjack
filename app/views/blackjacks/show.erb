@@ -35,6 +35,8 @@
 
     <% if @blackjack.game_state == Blackjack::STATE_ACTIVE %>
       <div class="actions card_actions">
+        <div class="score">Score: <%= @blackjack.get_user_score %></div>
+
         <%= form_tag hit_blackjack_url(@blackjack.id) do %>
           <%= submit_tag "HIT", :class => "button blue" %>
         <% end %>
@@ -42,6 +44,8 @@
         <%= form_tag stand_blackjack_url(@blackjack.id) do %>
           <%= submit_tag "STAND", :class => "button green" %>
         <% end %>
+
+        <div class="score">Score: ??</div>
       </div>
     <% end %>
 

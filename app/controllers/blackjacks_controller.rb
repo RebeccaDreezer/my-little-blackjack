@@ -33,7 +33,10 @@ class BlackjacksController < ApplicationController
     @blackjack.hit
 
     result = @blackjack.evaluate_game
-    flash[:notice] = result[:notice] unless result[:state] == Blackjack::STATE_ACTIVE
+    unless result[:state] == Blackjack::STATE_ACTIVE
+      flash[:notice] = result[:notice]
+      current_user.increment_user_score(@blackjack.game_state)
+    end
 
     redirect_to blackjack_url(id: params[:id])
   end
@@ -43,10 +46,11 @@ class BlackjacksController < ApplicationController
     @blackjack.stand
 
     result = @blackjack.evaluate_game(true)
-    flash[:notice] = result[:notice] unless result[:state] == Blackjack::STATE_ACTIVE
 
-    current_user.user_stat.increment!(:wins) if @blackjack.game_state == Blackjack::STATE_USER_WIN
-    current_user.user_stat.increment!(:losses) if @blackjack.game_state == Blackjack::STATE_DEALER_WIN
+    unless result[:state] == Blackjack::STATE_ACTIVE
+      flash[:notice] = result[:notice]
+      current_user.increment_user_score(@blackjack.game_state)
+    end
 
     redirect_to blackjack_url(id: params[:id])
   end

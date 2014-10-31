@@ -4,16 +4,19 @@
   </div>
 
   <div class="game_content">
-    <h2>Games</h2>
+    <% if flash[:notice] %>
+      <p class="flash"><%= flash[:notice] %></p>
+    <% end %>
     <div class="actions">
-      <%= form_tag stats_user_url(current_user.id) do %>
-        <p class="button"><%= submit_tag "#{current_user.name.upcase} STATS" %></p>
+      <%= form_tag stats_user_url(current_user.id), method: :post do %>
+        <%= submit_tag "STATS", :class => "button pink" %>
       <% end %>
 
-      <%= form_tag blackjack_new_url(current_user.id) do %>
-        <p class="button"><%= submit_tag "NEW GAME" %></p>
+      <%= form_tag blackjacks_url, :method => :post do %>
+        <%= submit_tag "NEW GAME", :class => "button purple" %>
       <% end %>
     </div>
+    <h2>Games</h2>
     <div class="scrollable_content">
       <table class="games_list">
         <tr>
@@ -26,15 +29,15 @@
           <tr>
             <td><%= blackjack.id %></td>
             <td><%= blackjack.created_at.strftime("%A, %B %d, %Y") %></td>
-            <td><%= BlackjackHelper.display_state(blackjack.game_state) %></td>
+            <td><%= BlackjackHelper.display_results_short(blackjack.game_state) %></td>
             <td>
               <% if blackjack.game_state == Blackjack::STATE_ACTIVE %>
                 <%= form_tag blackjack_url(blackjack.id) do %>
-                  <span class="button"><%= submit_tag "KEEP PLAYING!" %></span>
+                  <%= submit_tag "KEEP PLAYING!", :class => "button blue" %>
                 <% end %>
               <% else %>
                 <%= form_tag blackjack_url(blackjack.id) do %>
-                  <span class="button"><%= submit_tag "View Results" %></span>
+                  <%= submit_tag "View Results", :class => "button gray" %>
                 <% end %>
               <% end %>
             </td>

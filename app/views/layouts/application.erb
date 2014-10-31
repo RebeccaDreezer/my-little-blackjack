@@ -16,6 +16,12 @@
         <%= link_to "Sign up", sign_up_path %>
       <% end %>
     </div>
+    <% if current_user %>
+      <%= form_tag blackjacks_url, :method => :get do %>
+        <%= submit_tag "Index", :class => "button back green" %>
+      <% end %>
+    <% end %>
+    <div class="clear"></div>
     <div id="content">
       <%= yield %>
     </div>

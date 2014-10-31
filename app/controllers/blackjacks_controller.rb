@@ -1,15 +1,15 @@
 class BlackjacksController < ApplicationController
-
   def index
     @blackjacks = current_user.blackjacks.order("id DESC")
-
-    current_blackjack = @blackjacks.find_by(game_state: Blackjack::STATE_ACTIVE)
-    unless current_blackjack.present?
-      #TODO: add a something here to ensure a "new" button gets made
-    end
   end
 
-  def new
+  def create
+    if current_user.blackjacks.active.count > 3
+      flash[:notice] = "You've already got some active games..."
+      redirect_to blackjacks_url
+      return
+    end
+
     @blackjack = Blackjack.new do |b|
       b.user_id = current_user.id
       b.deck = Blackjack::DECK.shuffle
@@ -42,7 +42,7 @@ class BlackjacksController < ApplicationController
     @blackjack = Blackjack.find_by(id: params[:id])
     @blackjack.stand
 
-    result = @blackjack.evaluate_game
+    result = @blackjack.evaluate_game(true)
     flash[:notice] = result[:notice] unless result[:state] == Blackjack::STATE_ACTIVE
 
     redirect_to blackjack_url(id: params[:id])

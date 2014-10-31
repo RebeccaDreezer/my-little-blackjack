@@ -1,0 +1,20 @@
+<div class="welcome">
+  <div class="title">
+    <h1>My Little Blackjack</h1>
+  </div>
+
+  <div class="game_content">
+    <div class="pony"></div>
+
+    <table class="games_list">
+      <tr>
+        <th>Wins</th>
+        <th>Losses</th>
+      </tr>
+      <tr>
+        <td><%= current_user.user_stat.wins %></td>
+        <td><%= current_user.user_stat.losses %></td>
+      </tr>
+    </table>
+  </div>
+</div>

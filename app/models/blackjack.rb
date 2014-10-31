@@ -12,6 +12,12 @@ class Blackjack < ActiveRecord::Base
     's01', 's02', 's03', 's04', 's05', 's06', 's07', 's08', 's09', 's10', 's11', 's12', 's13'
   ]
 
+  scope :active, -> { where(game_state: STATE_ACTIVE) }
+
+  def update_deck(deck)
+    self.update_attributes(deck: dump_array(deck))
+  end
+
   def new_deal
     user_hand = self.deal(2)
     dealer_hand = self.deal(2)
@@ -22,9 +28,7 @@ class Blackjack < ActiveRecord::Base
     deck = load_array(self.deck)
     cards = []
     (1..num_cards).each{ cards << deck.pop }
-    self.deck = deck
-    self.save!
-
+    update_deck(deck)
     cards
   end
 
@@ -38,11 +42,11 @@ class Blackjack < ActiveRecord::Base
   def stand
     return if self.game_state != STATE_ACTIVE
     old_dealer_hand = load_array(self.dealer_hand)
+    new_dealer_hand = []
     while BlackjackHelper.hand_value(old_dealer_hand) < 17 do
       new_dealer_hand = old_dealer_hand.push *deal
     end
-    # TODO: ensure this saves correctly!!!
-    self.update_attributes(dealer_hand: new_dealer_hand)
+    self.update_attributes(dealer_hand: new_dealer_hand) unless new_dealer_hand.empty?
   end
 
   def get_user_hand
@@ -91,6 +95,14 @@ class Blackjack < ActiveRecord::Base
       YAML.load(hand)
     else
       hand
+    end
+  end
+
+  def dump_array(hand)
+    if hand.is_a? String
+      hand
+    else
+      YAML.dump(hand)
     end
   end
 

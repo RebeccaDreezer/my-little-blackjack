@@ -1,6 +1,14 @@
 module BlackjackHelper
+  def self.display_results(blackjack)
+    view_state = case blackjack.game_state
+    when Blackjack::STATE_PLAYER_WIN then "#{blackjack.user.name} wins!"
+    when Blackjack::STATE_DEALER_WIN then "Dealer wins!"
+    else ""
+    end
+    view_state
+  end
 
-  def self.display_state(state)
+  def self.display_results_short(state)
     view_state = case state
     when Blackjack::STATE_ACTIVE then "active"
     when Blackjack::STATE_PLAYER_WIN then "You won!"

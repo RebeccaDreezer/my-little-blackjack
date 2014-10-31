@@ -1,12 +1,18 @@
 <div class="game_board">
   <div class="title">
     <h1>My Little Blackjack</h1>
+  </div>
+
+  <%= @blackjack.deck %>
+
+  <div class="game_content">
+    <% if @blackjack.game_state != Blackjack::STATE_ACTIVE %>
+      <h1 class="game_result"><%= BlackjackHelper.display_results(@blackjack) %></h1>
+    <% end %>
+
     <% if flash[:notice] %>
       <p class="flash"><%= flash[:notice] %></p>
     <% end %>
-  </div>
-
-  <div class="game_content">
     <div class="user_side">
       <h2><%= current_user.name %></h2>
       <div class="cards">
@@ -20,10 +26,10 @@
       <h2>Dealer</h2>
       <div class="cards">
         <% @blackjack.get_dealer_hand.each_with_index do |card, index| %>
-          <% if index > 0 %>
-            <div class="playing_card <%= BlackjackHelper.get_card_classes(card) %>"></div>
-          <% else %>
+          <% if index == 0 && @blackjack.game_state == Blackjack::STATE_ACTIVE %>
             <div class="playing_card card_back"></div>
+          <% else %>
+            <div class="playing_card <%= BlackjackHelper.get_card_classes(card) %>"></div>
           <% end %>
         <% end %>
       </div>
@@ -32,15 +38,15 @@
     <% if @blackjack.game_state == Blackjack::STATE_ACTIVE %>
       <div class="actions card_actions">
         <%= form_tag hit_blackjack_url(@blackjack.id) do %>
-          <p class="button"><%= submit_tag "HIT" %></p>
+          <%= submit_tag "HIT", :class => "button blue" %>
         <% end %>
 
         <%= form_tag stand_blackjack_url(@blackjack.id) do %>
-          <p class="button"><%= submit_tag "STAND" %></p>
+          <%= submit_tag "STAND", :class => "button green" %>
         <% end %>
 
         <%= form_tag help_blackjack_url(@blackjack.id) do %>
-          <p class="button"><%= submit_tag "HELP" %></p>
+          <%= submit_tag "HELP", :class => "button pink" %>
         <% end %>
       </div>
     <% end %>

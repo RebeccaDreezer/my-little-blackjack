@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   validates_presence_of :email
   validates_uniqueness_of :email
 
+  has_one :user_stat
   has_many :blackjacks
 
   def self.authenticate(email, password)

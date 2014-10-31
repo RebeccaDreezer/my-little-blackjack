@@ -12,19 +12,21 @@
 
 6. Go to 'localhost:3000' and enjoy!
 
-== TO DO List (Optimizations and Improvements)
+== Future Optimizations
 
-1. Resize assets
+1. Use caching - blackjack instances should be stored in memcached. This is important for ensuring server response time is low when there are many concurrent users.
 
-2. Use caching
+2. Clean up the CSS (and ensure multiple browser support). This game was only tested on Chrome.
 
-3. Add sessions
+== Future Functionality Additions
 
-4. Add a PvP ("with Friends") mode
+1. Add a "with friends" mode - it would be great if you could play your friends instead of just playing the dealer. For this to work, the blackjack model would have to change to support two user_ids. Alternately, I could add a "user_matches" table that relates pairs of users to the blackjack games played.
 
-5. Leaderboards!
+2. Add a help page! Since my rules are a simplified set a rules, it would be great if users could see my rules. This would eliminate the learning curve (if users were to read the help section).
 
-6. Clean up SCSS
+3. Additional blackjack elements: betting, the ability to "split" in-game.
+
+4. Leaderboards! With a PvP mode, leaderboards are super important.
 
 == THANK YOU!
 
@@ -32,5 +34,5 @@
 - http://chromadancer.deviantart.com/
 - http://mlp-vector-collabs.deviantart.com/
 
-2. My authentication is borrowed from this Railscast:
+2. My authentication is largely borrowed from this Railscast:
 - http://railscasts.com/episodes/250-authentication-from-scratch

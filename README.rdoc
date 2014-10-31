@@ -30,7 +30,7 @@
 
 4. Leaderboards! With a PvP mode, leaderboards are super important.
 
-5. Add complete backend test coverage (specifically, blackjack model)
+5. Add complete backend test coverage
 
 == THANK YOU!
 

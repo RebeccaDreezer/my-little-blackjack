@@ -58,6 +58,10 @@ class Blackjack < ActiveRecord::Base
     load_array(self.dealer_hand)
   end
 
+  def get_deck
+    load_array(self.deck)
+  end
+
   def get_user_score
     BlackjackHelper.hand_value(self.get_user_hand)
   end

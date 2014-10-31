@@ -73,8 +73,6 @@ class Blackjack < ActiveRecord::Base
       results = {state: STATE_USER_WIN, notice: "You got blackjack!"}
     elsif user_hand_value > 21
       results = {state: STATE_DEALER_WIN, notice: "You busted. Dealer wins!"}
-    elsif dealer_hand_value == 21 && dealer_hand.length == 2
-      results = {state: STATE_DEALER_WIN, notice: "Dealer got blackjack!"}
     elsif dealer_hand_value > 21
       results = {state: STATE_USER_WIN, notice: "Dealer busted. You win!"}
     elsif end_game

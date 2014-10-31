@@ -39,17 +39,20 @@ module BlackjackHelper
     [value, 10].min
   end
 
-  def self.hand_value(hand)
-    total = 0
-    aces_count = 0
-    hand.each do |card|
-      value = card_value(card)
-      aces_count += 1 if value == 1
-      total += value
-    end
-    (1..aces_count).each{ |i| total += 10 if total < (21 - 10) }
-
-    total
+  def self.card_value(card)
+    value = card.slice(1, 2).to_i
+    value == 1 ? value = 11 : [value, 10].min
   end
 
+  def self.hand_value(hand)
+    total_aces = 0
+    total = 0
+    hand.each do |card|
+      total_aces += 1 if card.slice(1, 2).to_i == 1
+      total += card_value(card)
+    end
+
+    (1..total_aces).each{ |i| total -= 10 if total > 21 }
+    total
+  end
 end

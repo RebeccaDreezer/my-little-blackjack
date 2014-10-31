@@ -33,11 +33,12 @@
 }
 
 .back {
-  float: right;
+  float: left;
+  margin: 0 4px;
 }
 
 #user_nav {
-  float: left;
+  float: right;
 }
 
 body {
@@ -142,7 +143,7 @@ h1, h2, h3 {
 }
 
 h1.game_result {
-  font-size: 60px;
+  font-size: 40px;
   color: #F17B2E;
   text-shadow: 2px 3px 1px #F5C351;
 

@@ -254,12 +254,40 @@ h1.game_result {
 }
 
 .pony {
-  width: 180px;
-  height: 189px;
-  background-image: image-url("pony.png");
+  width: 286px;
+  height: 100%;
+  background-image: image-url("user_pony.png");
   background-position: 0 0;
   background-repeat: no-repeat;
   background-size: 100% auto;
   transform: scaleX(-1);
   display: inline-block;
+  margin: 20px;
+}
+
+.stats_content {
+  margin: auto;
+  max-width: 80%;
+  min-width: 30%;
+  width: auto;
+  height: 400px;
+  background: rgba(255,255,255,0.7);
+  border-radius: 10px;
+  min-height: 400px;
+  padding: 20px;
+
+  .pony, .stats_list {
+    float: left;
+  }
+}
+
+ul.stats_list {
+  list-style-type: none;
+
+  .stat {
+    font-family: 'equestriabold', sans-serif;
+    font-size: 60px;
+    color: #9CCE41;
+    text-shadow: 2px 3px 1px #2DAA46;
+  }
 }

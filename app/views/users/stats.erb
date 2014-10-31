@@ -3,18 +3,15 @@
     <h1>My Little Blackjack</h1>
   </div>
 
-  <div class="game_content">
+  <div class="stats_content">
     <div class="pony"></div>
-
-    <table class="games_list">
-      <tr>
-        <th>Wins</th>
-        <th>Losses</th>
-      </tr>
-      <tr>
-        <td><%= current_user.user_stat.wins %></td>
-        <td><%= current_user.user_stat.losses %></td>
-      </tr>
-    </table>
+    <ul class="stats_list">
+      <li class="stat">
+        <p>Wins: <%= current_user.user_stat.wins %></p>
+      </li>
+      <li class="stat">
+        <p>Losses: <%= current_user.user_stat.losses %></p>
+      </li>
+    </ul>
   </div>
 </div>

@@ -2,7 +2,7 @@ class Blackjack < ActiveRecord::Base
   belongs_to :user
 
   STATE_ACTIVE = 0
-  STATE_PLAYER_WIN = 1
+  STATE_USER_WIN = 1
   STATE_DEALER_WIN = 2
 
   DECK = [
@@ -65,16 +65,16 @@ class Blackjack < ActiveRecord::Base
     results = {}
 
     if user_hand_value == 21 && user_hand.length == 2
-      results = {state: STATE_PLAYER_WIN, notice: "You got blackjack!"}
+      results = {state: STATE_USER_WIN, notice: "You got blackjack!"}
     elsif user_hand_value > 21
       results = {state: STATE_DEALER_WIN, notice: "You busted. Dealer wins!"}
     elsif dealer_hand_value == 21 && dealer_hand.length == 2
       results = {state: STATE_DEALER_WIN, notice: "Dealer got blackjack!"}
     elsif dealer_hand_value > 21
-      results = {state: STATE_PLAYER_WIN, notice: "Dealer busted. You win!"}
+      results = {state: STATE_USER_WIN, notice: "Dealer busted. You win!"}
     elsif end_game
       if user_hand_value > dealer_hand_value
-        results = {state: STATE_PLAYER_WIN, notice: "You beat the dealer. You win!"}
+        results = {state: STATE_USER_WIN, notice: "You beat the dealer. You win!"}
       elsif user_hand_value == dealer_hand_value
         results = {state: STATE_DEALER_WIN, notice: "The dealer tied you. You lose!"}
       else

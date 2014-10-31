@@ -18,6 +18,8 @@
 
 2. Clean up the CSS (and ensure multiple browser support). This game was only tested on Chrome.
 
+3. Remove the public pages and add a "catch all" error page for missing routes etc.
+
 == Future Functionality Additions
 
 1. Add a "with friends" mode - it would be great if you could play your friends instead of just playing the dealer. For this to work, the blackjack model would have to change to support two user_ids. Alternately, I could add a "user_matches" table that relates pairs of users to the blackjack games played.

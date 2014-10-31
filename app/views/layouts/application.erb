@@ -23,7 +23,7 @@
       <%= form_tag blackjacks_url, :method => :post do %>
         <%= submit_tag "NEW GAME", :class => "button back purple" %>
       <% end %>
-      <%= form_tag blackjacks_url do %>
+      <%= form_tag stats_user_url(current_user.id), :method => :get do %>
         <%= submit_tag "STATS", :class => "button back pink" %>
       <% end %>
     <% end %>

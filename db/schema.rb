@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141030004959) do
+ActiveRecord::Schema.define(version: 20141030234629) do
 
   create_table "blackjacks", force: true do |t|
     t.integer  "user_id"
@@ -24,6 +24,16 @@ ActiveRecord::Schema.define(version: 20141030004959) do
   end
 
   add_index "blackjacks", ["user_id"], name: "index_blackjacks_on_user_id", using: :btree
+
+  create_table "user_stats", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "wins",       default: 0, null: false
+    t.integer  "losses",     default: 0, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "user_stats", ["user_id"], name: "index_user_stats_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "name",          null: false

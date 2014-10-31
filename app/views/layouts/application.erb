@@ -18,13 +18,13 @@
     </div>
     <% if current_user %>
       <%= form_tag blackjacks_url, :method => :get do %>
-        <%= submit_tag "HOME", :class => "button back pink" %>
+        <%= submit_tag "HOME", :class => "button back blue" %>
       <% end %>
       <%= form_tag blackjacks_url, :method => :post do %>
-        <%= submit_tag "NEW GAME", :class => "button back blue" %>
+        <%= submit_tag "NEW GAME", :class => "button back purple" %>
       <% end %>
       <%= form_tag blackjacks_url do %>
-        <%= submit_tag "STATS", :class => "button back green" %>
+        <%= submit_tag "STATS", :class => "button back pink" %>
       <% end %>
     <% end %>
     <div class="clear"></div>

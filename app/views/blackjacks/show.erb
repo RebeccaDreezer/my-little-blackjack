@@ -3,8 +3,6 @@
     <h1>My Little Blackjack</h1>
   </div>
 
-  <%= @blackjack.deck %>
-
   <div class="game_content">
     <% if @blackjack.game_state != Blackjack::STATE_ACTIVE %>
       <h1 class="game_result"><%= BlackjackHelper.display_results(@blackjack) %></h1>
@@ -43,10 +41,6 @@
 
         <%= form_tag stand_blackjack_url(@blackjack.id) do %>
           <%= submit_tag "STAND", :class => "button green" %>
-        <% end %>
-
-        <%= form_tag help_blackjack_url(@blackjack.id) do %>
-          <%= submit_tag "HELP", :class => "button pink" %>
         <% end %>
       </div>
     <% end %>

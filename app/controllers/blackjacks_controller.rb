@@ -46,13 +46,8 @@ class BlackjacksController < ApplicationController
     flash[:notice] = result[:notice] unless result[:state] == Blackjack::STATE_ACTIVE
 
     current_user.user_stat.increment!(:wins) if @blackjack.game_state == Blackjack::STATE_USER_WIN
-    current_user.user_stat.increment!(:losses) if Blackjack.game_state == Blackjack::STATE_DEALER_WIN
+    current_user.user_stat.increment!(:losses) if @blackjack.game_state == Blackjack::STATE_DEALER_WIN
 
     redirect_to blackjack_url(id: params[:id])
   end
-
-  def help
-
-  end
-
 end

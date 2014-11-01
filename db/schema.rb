@@ -44,4 +44,6 @@ ActiveRecord::Schema.define(version: 20141030234629) do
     t.datetime "updated_at"
   end
 
+  add_index "users", ["name"], name: "index_users_on_name", using: :btree
+
 end
